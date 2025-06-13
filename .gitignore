@@ -1,0 +1,9 @@
+ 
+# Directories
+work/
+
+# Files
+Makefile
+*.exe
+*.o
+*.pdf
