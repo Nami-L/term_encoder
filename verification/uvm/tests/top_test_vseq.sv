@@ -25,7 +25,16 @@ seq = term_encoder_uvc_sequence_base::type_id::create("seq");
         // creado dentro de la clase uvc_sequence_base
 
         //el objeto es m_tras y accedemos al item
-        m_trans.m_thermometer inside {[0 :7]};
+        //m_trans.m_thermometer inside {[0 :7]};
+ m_trans.m_thermometer inside {
+    7'b0000001,
+    7'b0000011,
+    7'b0000111,
+    7'b0001111,
+    7'b0011111,
+    7'b0111111,
+    7'b1111111
+  };
         m_trans.m_enable inside {[0 :1 ]};
 
       }))
@@ -40,7 +49,7 @@ task top_test_vseq::body();
   // Initial delay
   #(30ns);
 
-  repeat (15) begin
+  repeat (1500) begin
     term_encoder_rand_seq();
     //#(10ns);
   end
@@ -51,3 +60,5 @@ task top_test_vseq::body();
 endtask : body
 
 `endif // TOP_TEST_VSEQ_SV
+
+     
