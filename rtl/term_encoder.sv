@@ -5,9 +5,9 @@ output logic [2:0] binary_o;
 input logic enable_i;
 
 logic [2:0] binary_inside;
-integer k, m;
+integer k;
 
-always @ (posedge enable_i)
+always_comb
 if (enable_i)
 begin
 	binary_inside = 0;

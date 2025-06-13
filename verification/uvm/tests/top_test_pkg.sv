@@ -9,6 +9,7 @@ package top_test_pkg;
   import term_encoder_uvc_pkg::*;
   import top_env_pkg::*;
 
+  `include "top_test_vseq.sv"
   `include "top_test.sv"
 
 endpackage : top_test_pkg

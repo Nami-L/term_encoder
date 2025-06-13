@@ -16,7 +16,7 @@ package term_encoder_uvc_pkg;
   `include "term_encoder_uvc_agent.sv"
 
   // Sequence library
-  //`include "term_encoder_uvc_sequence_base.sv"
+  `include "term_encoder_uvc_sequence_base.sv"
 
 endpackage : term_encoder_uvc_pkg
 
