@@ -16,7 +16,6 @@ class top_scoreboard extends uvm_scoreboard;
   int unsigned m_num_failed;
   term_encoder_uvc_sequence_item m_term_encoder_queue[$];
 
-  logic [5:0] NP;
 
 endclass : top_scoreboard
 
@@ -40,11 +39,11 @@ endfunction : write_term_encoder
 
 function void top_scoreboard::report_phase(uvm_phase phase);
 
-      string s;
-         foreach (m_term_encoder_queue[i]) begin
-           s = {s, $sformatf("\nTRANS[%3d]: \n", i+1) ,m_term_encoder_queue[i].convert2string(), "\n"};
-         end
-         `uvm_info(get_type_name(), s, UVM_DEBUG)
+    //  string s;
+    //     foreach (m_term_encoder_queue[i]) begin
+    //       s = {s, $sformatf("\nTRANS[%3d]: \n", i+1) ,m_term_encoder_queue[i].convert2string(), "\n"};
+    //     end
+    //     `uvm_info(get_type_name(), s, UVM_DEBUG)
    `uvm_info(get_type_name(), $sformatf("PASSED = %3d, FAILED = %3d", m_num_passed, m_num_failed),
             UVM_DEBUG)
 
@@ -53,15 +52,73 @@ endfunction : report_phase
   task top_scoreboard::run_phase(uvm_phase phase);
     string s;
     forever begin
+
+            wait(m_term_encoder_queue.size()> 0)
+
+            foreach (m_term_encoder_queue[i]) begin
+            if(m_term_encoder_queue[i].m_enable ==1) begin
+                
+                if((m_term_encoder_queue[i].m_thermometer=='d1) && (m_term_encoder_queue[i].m_binary == 'd1))begin
+                m_num_passed++;
+                 `uvm_info(get_type_name(),
+    $sformatf("PASS:  (thermometer=%0d, binary=%0d)",
+               m_term_encoder_queue[i].m_thermometer, m_term_encoder_queue[i].m_binary),
+    UVM_LOW)
+                end else if((m_term_encoder_queue[i].m_thermometer=='d3) && (m_term_encoder_queue[i].m_binary== 'd2))begin
+                         m_num_passed++;
+             `uvm_info(get_type_name(),
+    $sformatf("PASS:  (thermometer=%0d, binary=%0d)",
+               m_term_encoder_queue[i].m_thermometer, m_term_encoder_queue[i].m_binary),
+    UVM_LOW)
+                end else if((m_term_encoder_queue[i].m_thermometer=='d7) && (m_term_encoder_queue[i].m_binary== 'd3))begin
+                         m_num_passed++;
+             `uvm_info(get_type_name(),
+    $sformatf("PASS:  (thermometer=%0d, binary=%0d)",
+               m_term_encoder_queue[i].m_thermometer, m_term_encoder_queue[i].m_binary),
+    UVM_LOW)
+                end else if((m_term_encoder_queue[i].m_thermometer=='d15) && (m_term_encoder_queue[i].m_binary== 'd4))begin
+                         m_num_passed++;
+             `uvm_info(get_type_name(),
+    $sformatf("PASS:  (thermometer=%0d, binary=%0d)",
+               m_term_encoder_queue[i].m_thermometer, m_term_encoder_queue[i].m_binary),
+    UVM_LOW)
+                end else if((m_term_encoder_queue[i].m_thermometer=='d31) && (m_term_encoder_queue[i].m_binary== 'd5))begin
+                         m_num_passed++;
+             `uvm_info(get_type_name(),
+    $sformatf("PASS:  (thermometer=%0d, binary=%0d)",
+               m_term_encoder_queue[i].m_thermometer, m_term_encoder_queue[i].m_binary),
+    UVM_LOW)
+                end else if((m_term_encoder_queue[i].m_thermometer=='d63) && (m_term_encoder_queue[i].m_binary== 'd6))begin
+                         m_num_passed++;
+             `uvm_info(get_type_name(),
+    $sformatf("PASS:  (thermometer=%0d, binary=%0d)",
+               m_term_encoder_queue[i].m_thermometer, m_term_encoder_queue[i].m_binary),
+    UVM_LOW)
+                end else if((m_term_encoder_queue[i].m_thermometer=='d127) && (m_term_encoder_queue[i].m_binary== 'd7))begin
+                m_num_passed++;
+                             `uvm_info(get_type_name(),
+    $sformatf("PASS:  (thermometer=%0d, binary=%0d)",
+               m_term_encoder_queue[i].m_thermometer, m_term_encoder_queue[i].m_binary),
+    UVM_LOW)
+                end else begin
+                         m_num_failed++; 
+                                      `uvm_info(get_type_name(),
+    $sformatf("FAIL:  (thermometer=%0d, binary=%0d)",
+               m_term_encoder_queue[i].m_thermometer, m_term_encoder_queue[i].m_binary),
+    UVM_LOW)
+            end
+            end
+end
  
-//    foreach (m_term_encoder_queue[i]) begin
-//      s = {
-//        s,$sformatf("\nTRANS[%3d]: \n ------ SCOREBOARD (ADDER UVC) ------  ", i), m_term_encoder_queue[i].convert2string(),"\n"};
-//    end
-//   `uvm_info(get_type_name(), s, UVM_DEBUG)
-//   s = "";
-//   //m_term_encoder_queue.delete();
-//   m_term_encoder_queue.pop_front();
+    foreach (m_term_encoder_queue[i]) begin
+      s = {
+        s,$sformatf("\nTRANS[%3d]: \n ------ SCOREBOARD (THERMOMETER ENCODER UVC) ------  ", i), m_term_encoder_queue[i].convert2string(),"\n"};
+    end
+   `uvm_info(get_type_name(), s, UVM_DEBUG)
+   s = "";
+   //m_term_encoder_queue.delete();     m_num_failed++;
+
+   m_term_encoder_queue.delete();
 
      end
 

@@ -65,7 +65,7 @@ task term_encoder_uvc_monitor::do_mon();
         m_trans.m_enable = vif.enable_i;
         m_trans.m_binary = vif.binary_o;
 
-      `uvm_info(get_type_name(), {"\n ------ MONITOR (TimeAlign UVC) ------ ",
+      `uvm_info(get_type_name(), {"\n ------ MONITOR (THERMOMETER ENCODER UVC) ------ ",
                                   m_trans.convert2string()}, UVM_DEBUG)
 
       analysis_port.write(m_trans);

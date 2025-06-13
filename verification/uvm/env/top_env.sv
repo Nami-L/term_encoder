@@ -6,6 +6,7 @@ class top_env extends uvm_env;
 
 term_encoder_uvc_agent m_term_encoder_agent;
 term_encoder_uvc_config m_term_encoder_config;
+top_scoreboard m_scoreboard;
 top_vsqr vsqr;
 
 extern function new(string name, uvm_component parent);
@@ -27,11 +28,17 @@ m_term_encoder_config.is_active = UVM_ACTIVE;
 uvm_config_db#(term_encoder_uvc_config)::set(this,"m_term_encoder_agent*","config",m_term_encoder_config);
 //CREAMOS LA SECUENCIA VIRTUAL
 vsqr = top_vsqr::type_id::create("vsqr",this);
+//CREAMOS EL SCOREBOARD
+m_scoreboard = top_scoreboard::type_id::create("m_term_encoder_scoreboard",this);
+
 endfunction: build_phase
 
 function void top_env::connect_phase(uvm_phase phase);
 //CONECTAMOS LA SECUENCIA VIRTUAL
 vsqr.m_term_encoder_sequencer = m_term_encoder_agent.m_sequencer;
+// CONECTAMOS EL SCOREBOARD AL AGENTE, EL ANALYSIS PORT
+m_term_encoder_agent.analysis_port.connect(m_scoreboard.term_encoder_imp_export);
+
 
 
 endfunction: connect_phase

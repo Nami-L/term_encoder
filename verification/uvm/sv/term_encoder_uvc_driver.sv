@@ -50,7 +50,7 @@ endtask: run_phase
 task term_encoder_uvc_driver::do_drive();
 //SINCRONIZAMOS
 @(vif.cb_drv);
-  `uvm_info(get_type_name(), {"\n ------ DRIVER (TimeAlign UVC) ------", req.convert2string()}, UVM_DEBUG)
+  `uvm_info(get_type_name(), {"\n ------ DRIVER (THERMOMETER ENCODER UVC) ------", req.convert2string()}, UVM_DEBUG)
 
 //PASAMOS LAS SEÑALES QUE SE GENERARON DESDE EL DRIVER AL
 //DUT 

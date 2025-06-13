@@ -60,7 +60,7 @@ function string term_encoder_uvc_sequence_item::convert2string();
 
   string s;
   s = super.convert2string();
-  $sformat(s, {s, "\n", "TRANSACTION INFORMATION (TimeAlign UVC):"});
+  $sformat(s, {s, "\n", "TRANSACTION INFORMATION (THERMOMETER ENCODER UVC):"});
   $sformat(s, {s, "\n", "m_thermometer = %5d, m_enable = %5d, m_binary = %5d\n"}, m_thermometer,
            m_enable, m_binary);
   return s;
