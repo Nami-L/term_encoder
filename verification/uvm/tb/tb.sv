@@ -13,7 +13,7 @@ module tb;
   // Reset signal
   logic rst_i = 1;
   initial begin
-    repeat(5) @(posedge clk_i);
+    repeat(2) @(posedge clk_i);
     rst_i = 0;
   end
 
