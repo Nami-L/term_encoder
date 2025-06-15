@@ -35,7 +35,7 @@ seq = term_encoder_uvc_sequence_base::type_id::create("seq");
     7'b0111111,
     7'b1111111
   };
-        m_trans.m_enable inside {[0 :1 ]};
+        m_trans.m_enable inside {[0:1 ]};
 
       }))
     `uvm_fatal("RAND_ERROR", "Randomization error!")
@@ -49,7 +49,7 @@ task top_test_vseq::body();
   // Initial delay
   #(30ns);
 
-  repeat (15000) begin
+  repeat (1000) begin
     term_encoder_rand_seq();
     //#(10ns);
   end

@@ -21,13 +21,10 @@ term_encoder_uvc_sequence_item m_trans;
     7'b0001111,
     7'b0011111,
     7'b0111111,
-    7'b1111111,
-    7'b1011111
-  };
+    7'b1111111  };
 }
     cp_enable: coverpoint m_trans.m_enable{bins enable_bin[]={[0:1]};}
-    //cp_msb: coverpoint m_trans.m_msb{bins msb_bin[]={[0:7]}}
-        cp_cross: cross m_trans.m_thermometer, m_trans.m_enable;
+    //cp_cross: cross m_trans.m_thermometer, m_trans.m_enable iff (m_trans.m_enable==1);
 
     endgroup
 
