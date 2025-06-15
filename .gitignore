@@ -7,3 +7,4 @@ Makefile
 *.exe
 *.o
 *.pdf
+*.txt
