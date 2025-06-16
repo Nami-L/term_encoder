@@ -1,0 +1,69 @@
+Toca implementar una lógica donde escanee cada uno de los 7 bits, emepezando del menos
+significativo al más significativo. 
+Tomar en cuenta que:
+Solo se consideran los siguientes caso:
+
+000_0001
+000_0011
+000_0111
+000_1111
+001_1111
+011_1111
+111_1111
+
+Entonces debemos escanear el bit menos significativo y debe ser igual 1, entonces el siguiente bit puede ser cero o 1, pero si es cero el siguiente ya no puede ser 1, porque no entraria a ningun caso, si es 1, si puede ser cero
+Analicemos el siguiente caso que no puede ser
+
+Ejemplo:
+
+0000010:
+ESte no cumple la primera condición de que el primer bit debe ser cero y entonces se descarta
+Ejemplo2:
+000_0011
+
+El primer bit es 1, entoneces: Pasa la prueba
+El segundo bit tambien es 1: entones pasa la prueba 
+El tercer bit es 0: entonces pasa la prueba
+El cuarto bit es 0 : Entonces pasa la prueba
+El Quinto bit es 0 : Entonces pasa la prueba
+El Sexto bit es 0 : Entonces pasa la prueba
+El Septimo bit es 0 : Entonces pasa la prueba
+
+Entonces la pruba es Exitosa
+
+Ejemplo 3:
+
+001_0011;
+
+El primer bit es 1, entoneces: Pasa la prueba
+El segundo bit tambien es 1: entones pasa la prueba 
+El tercer bit es 0: entonces pasa la prueba
+El cuarto bit es 0 : Entonces pasa la prueba
+El Quinto bit es 1 : Entonces  no pasa la prueba
+Por lo tanto es un bit no valido y no termina.
+
+
+Palabra a analizar 000_1011
+		   654_3210
+
+bit uno_detectado=0;
+bit cero_detectado=0;
+for(int i = 0 : i <=6 : i++) begin
+
+    if (thermometer[i] == 1) begin
+    	
+    	if(cero_detectado) begin
+    		
+    		return0; 
+	end
+    uno_detectado=1;
+    
+end else begin
+    if(uno_detectado) begin
+    cero_detectado =O;
+    end
+  end
+
+	
+reeturn 1;
+end
